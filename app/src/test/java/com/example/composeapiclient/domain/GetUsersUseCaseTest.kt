@@ -26,7 +26,16 @@ class GetUsersUseCaseTest {
     @Test
     fun `return users list from repository`() = runTest{
 
-        val users =  Resource.Success(listOf<User>(z))
+        val users = Resource.Success(
+            listOf(
+                User(
+                    id = 1,
+                    name = "Test User",
+                    username = "testuser",
+                    email = "test@gmail.com"
+                )
+            )
+        )
         coEvery{ repository.getUsers() } returns users
         val result = usecase()
         assertEquals(users, result)
